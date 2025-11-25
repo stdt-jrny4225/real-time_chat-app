@@ -1,0 +1,14 @@
+# Render service manifest (optional)
+# You can import this file into Render's "Blueprints" (Infrastructure-as-Code)
+# Adjust `name`, `plan`, and `region` as needed before applying.
+
+services:
+  - type: web
+    name: chatvibe
+    env: docker
+    dockerfilePath: Dockerfile
+    plan: free
+    region: oregon
+    buildCommand: ""
+    startCommand: "node server.js"
+    autoDeploy: true
