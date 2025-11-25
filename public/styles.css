@@ -917,33 +917,10 @@ body {
   }
 }
 
-/* Position the external bot embed a bit higher so it doesn't overlap app controls */
+/* Pickaxe bot embed styling */
 #deployment-dc2f23ed-e4e1-40bd-9035-1cc50a7fac23 {
-  position: fixed !important;
-  right: 16px !important;
-  bottom: 120px !important;
-  z-index: 9999 !important;
-  pointer-events: auto !important;
-  visibility: visible !important;
-  display: block !important;
-}
-
-@media (min-width: 1025px) {
-  #deployment-dc2f23ed-e4e1-40bd-9035-1cc50a7fac23 {
-    bottom: 90px !important;
-  }
-}
-
-@media (max-width: 768px) {
-  #deployment-dc2f23ed-e4e1-40bd-9035-1cc50a7fac23 {
-    right: 12px !important;
-    bottom: 150px !important;
-  }
-}
-
-@media (max-width: 480px) {
-  #deployment-dc2f23ed-e4e1-40bd-9035-1cc50a7fac23 {
-    right: 12px !important;
-    bottom: 180px !important;
-  }
+  position: fixed;
+  right: 20px;
+  bottom: 100px;
+  z-index: 999;
 }
