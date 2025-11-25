@@ -177,7 +177,7 @@
       <form id="loginForm">
         <div class="form-group">
           <label for="loginUsername">Username:</label>
-          <input type="text" id="loginUsername" placeholder="Enter your username" required style="color:whitesmoke;">
+          <input type="text" id="loginUsername" placeholder="Enter your username" required>
         </div>
         <div class="form-group">
           <label for="loginPassword">Password:</label>
@@ -290,17 +290,5 @@
 
   <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
   <script src="app.js"></script>
-  
-  <!-- Pickaxe Bot Widget -->
-  <div id="deployment-dc2f23ed-e4e1-40bd-9035-1cc50a7fac23" style="display: flex; align-items: center; justify-content: center;"></div>
-  <script src="https://studio.pickaxe.co/api/embed/bundle.js" defer></script>
-  <script>
-    // Initialize bot widget after page loads
-    window.addEventListener('load', function() {
-      if (window.PickaxeEmbed) {
-        window.PickaxeEmbed.init();
-      }
-    });
-  </script>
 </body>
 </html>
