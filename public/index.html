@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChatVibe - Real-Time Chat</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Sidebar with Chat Options -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h1 class="app-title">Razzify</h1>
+        <div class="header-actions">
+          <button class="icon-btn" id="searchBtn" title="Search">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M9 17C13.4183 17 17 13.4183 17 9C17 4.58172 13.4183 1 9 1C4.58172 1 1 4.58172 1 9C1 13.4183 4.58172 17 9 17Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M19 19L14.65 14.65" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <button class="icon-btn" id="profileBtn" title="Profile">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M10 11C12.2091 11 14 9.20914 14 7C14 4.79086 12.2091 3 10 3C7.79086 3 6 4.79086 6 7C6 9.20914 7.79086 11 10 11Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M3 17C3 13.6863 6.13401 11 10 11C13.866 11 17 13.6863 17 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Chat Mode Tabs -->
+      <div class="chat-mode-tabs">
+        <button class="tab-btn active" data-mode="personal" title="Personal Chat">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M9 9C10.6569 9 12 7.65685 12 6C12 4.34315 10.6569 3 9 3C7.34315 3 6 4.34315 6 6C6 7.65685 7.34315 9 9 9Z" fill="currentColor"/>
+            <path d="M15 15C15 12.7909 12.3137 11 9 11C5.68629 11 3 12.7909 3 15V16C3 16.5523 3.44772 17 4 17H14C14.5523 17 15 16.5523 15 16V15Z" fill="currentColor"/>
+          </svg>
+          <span>Personal</span>
+        </button>
+        <button class="tab-btn" data-mode="group" title="Group Chat">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M12 7C13.1046 7 14 6.10457 14 5C14 3.89543 13.1046 3 12 3C10.8954 3 10 3.89543 10 5C10 6.10457 10.8954 7 12 7Z" fill="currentColor"/>
+            <path d="M6 8C7.65685 8 9 6.65685 9 5C9 3.34315 7.65685 2 6 2C4.34315 2 3 3.34315 3 5C3 6.65685 4.34315 8 6 8Z" fill="currentColor"/>
+            <path d="M18 17C18 15.5 16.5 14.5 15 14.5C13.5 14.5 12.5 15.5 12 17H18Z" fill="currentColor"/>
+            <path d="M12 15C12 12.5 10.5 10.5 6 10.5C1.5 10.5 0 12.5 0 15V17C0 17.5523 0.447715 18 1 18H11C11.5523 18 12 17.5523 12 17V15Z" fill="currentColor"/>
+          </svg>
+          <span>Group</span>
+        </button>
+        <button class="tab-btn" data-mode="community" title="Community Chat">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M6 4C6 2.89543 6.89543 2 8 2C9.10457 2 10 2.89543 10 4C10 5.10457 9.10457 6 8 6C6.89543 6 6 5.10457 6 4Z" fill="currentColor"/>
+            <path d="M12 5C12 3.89543 12.8954 3 14 3C15.1046 3 16 3.89543 16 5C16 6.10457 15.1046 7 14 7C12.8954 7 12 6.10457 12 5Z" fill="currentColor"/>
+            <path d="M2 6C2 4.89543 2.89543 4 4 4C5.10457 4 6 4.89543 6 6C6 7.10457 5.10457 8 4 8C2.89543 8 2 7.10457 2 6Z" fill="currentColor"/>
+            <path d="M11 9C11 8.44772 11.4477 8 12 8H16C16.5523 8 17 8.44772 17 9V15C17 15.5523 16.5523 16 16 16H12C11.4477 16 11 15.5523 11 15V9Z" fill="currentColor"/>
+            <path d="M1 11C1 10.4477 1.44772 10 2 10H10C10.5523 10 11 10.4477 11 11V17C11 17.5523 10.5523 18 10 18H2C1.44772 18 1 17.5523 1 17V11Z" fill="currentColor"/>
+          </svg>
+          <span>Community</span>
+        </button>
+      </div>
+
+      <!-- Personal Chat Section -->
+      <div class="chat-section active" id="personalSection">
+        <div class="section-header">Online Users</div>
+        <ul class="user-list" id="userList">
+          <!-- Users will be added here dynamically -->
+        </ul>
+      </div>
+
+      <!-- Group Chat Section -->
+      <div class="chat-section" id="groupSection">
+        <div class="section-header">
+          <span>Groups</span>
+          <button class="icon-btn-small" id="createGroupBtn" title="Create Group">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M8 1V15M1 8H15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </div>
+        <ul class="group-list" id="groupList">
+          <!-- Groups will be added here dynamically -->
+        </ul>
+      </div>
+
+      <!-- Community Section -->
+      <div class="chat-section" id="communitySection">
+        <div class="section-header">Community Hall</div>
+        <button class="btn-join-community" id="joinCommunityBtn">Join Community</button>
+        <div class="community-info">
+          <p>Connect with all users and engage in group discussions!</p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Chat Area -->
+    <main class="chat-container">
+      <!-- Chat Header -->
+      <header class="chat-header" id="chatHeader">
+        <button class="mobile-menu-btn" id="mobileMenuBtn" title="Menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M3 6H21V8H3V6ZM3 11H21V13H3V11ZM3 16H21V18H3V16Z" fill="currentColor"/>
+          </svg>
+        </button>
+        <div class="chat-header-info">
+          <img src="" alt="User Avatar" class="chat-user-avatar" id="chatUserAvatar">
+          <div class="chat-header-text">
+            <h2 id="chatUserName">Select a conversation</h2>
+            <span class="user-status" id="userStatus">online</span>
+          </div>
+        </div>
+        <div class="header-actions">
+                <!-- <button class="icon-btn" id="callBtn" title="Call">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M2 3H5.5C5.78 3 6.04 3.15 6.18 3.39L8.6 8.03C8.84 8.5 8.72 9.08 8.26 9.38L6.29 10.68C7.47 13.06 9.39 15.09 11.99 16.32L13.3 14.38C13.6 13.92 14.18 13.8 14.65 14.04L19.3 16.47C19.54 16.61 19.7 16.87 19.7 17.15V20.5C19.7 20.5 18.7 20.7 18 20.7C9.16 20.7 2 13.54 2 4.7C2 4 2.2 3 2 3Z" fill="currentColor"/>
+                  </svg>
+                </button>
+                <button class="icon-btn" id="videoBtn" title="Video">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M14 3H2C1.44772 3 1 3.44772 1 4V16C1 16.5523 1.44772 17 2 17H14C14.5523 17 15 16.5523 15 16V4C15 3.44772 14.5523 3 14 3Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                    <path d="M17 5L19.5 3.5V16.5L17 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button> -->
+          <button class="icon-btn" id="leaveBtn" title="Leave" style="display: none;">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M13 1H2C1.44772 1 1 1.44772 1 2V18C1 18.5523 1.44772 19 2 19H13M16 5L19 8M19 8L16 11M19 8H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <!-- Messages Area -->
+      <div class="messages-area" id="messagesArea">
+        <div class="empty-state">
+          <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+            <circle cx="40" cy="40" r="38" fill="#E8D4F8" stroke="#D4A5F0" stroke-width="4"/>
+            <path d="M30 35C30 33.8954 30.8954 33 32 33H48C49.1046 33 50 33.8954 50 35V50C50 51.1046 49.1046 52 48 52H32C30.8954 52 30 51.1046 30 50V35Z" fill="#D4A5F0" stroke="#A55CE8" stroke-width="2"/>
+            <circle cx="48" cy="30" r="3" fill="#A55CE8"/>
+          </svg>
+          <p>Select a conversation to start chatting</p>
+        </div>
+      </div>
+
+      <!-- Message Input Area -->
+      <div class="input-area" id="inputArea">
+        <div class="input-wrapper">
+          <input type="text" id="messageInput" placeholder="Type a message..." class="message-input" disabled>
+          <button id="sendBtn" class="send-btn" disabled title="Send">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M2 10L18 2L10 18L7 12L2 10Z" fill="currentColor"/>
+            </svg>
+          </button>
+        </div>
+        <div class="input-actions">
+          <button class="action-btn" title="Attach file">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path d="M12 2H6C4.89543 2 4 2.89543 4 4V14C4 15.1046 4.89543 16 6 16H12C13.1046 16 14 15.1046 14 14V4C14 2.89543 13.1046 2 12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M6 8L12 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M6 12L12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <button class="action-btn" title="Emoji">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <circle cx="9" cy="9" r="8" stroke="currentColor" stroke-width="1.5"/>
+              <circle cx="6" cy="7" r="1" fill="currentColor"/>
+              <circle cx="12" cy="7" r="1" fill="currentColor"/>
+              <path d="M6 11C6 11 7 12 9 12C11 12 12 11 12 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Modal for login -->
+  <div class="modal" id="loginModal">
+    <div class="modal-content">
+      <h2>Welcome to ChatVibe</h2>
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="loginUsername">Username:</label>
+          <input type="text" id="loginUsername" placeholder="Enter your username" required>
+        </div>
+        <div class="form-group">
+          <label for="loginPassword">Password:</label>
+          <input type="password" id="loginPassword" placeholder="Enter your password" required>
+        </div>
+        <div class="form-group">
+          <label>
+            <input type="checkbox" id="isNewUser"> New User? Create Account
+          </label>
+        </div>
+        <button type="submit" class="btn-primary">Login</button>
+      </form>
+    </div>
+  </div>
+
+    <!-- Modal for user profile -->
+    <div class="modal" id="profileModal">
+      <div class="modal-content">
+        <h2 id="profileModalTitle">Your Profile</h2>
+        <form id="profileForm">
+          <div class="form-group">
+            <label for="profileName">Display Name:</label>
+            <input type="text" id="profileName" placeholder="Your display name" required>
+          </div>
+          <div class="form-group">
+            <label for="profileAvatar">Avatar URL (optional):</label>
+            <input type="text" id="profileAvatar" placeholder="https://...">
+          </div>
+          <div class="form-group">
+            <label for="profileBio">Bio (optional):</label>
+            <textarea id="profileBio" placeholder="Tell others about yourself" rows="3"></textarea>
+          </div>
+          <div class="form-actions">
+            <button type="button" class="btn-secondary" id="cancelProfileBtn">Cancel</button>
+            <button type="submit" class="btn-primary" id="saveProfileBtn">Save Profile</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  <!-- Modal for user setup -->
+  <div class="modal" id="setupModal">
+    <div class="modal-content">
+      <h2>Welcome to ChatVibe</h2>
+      <form id="setupForm">
+        <div class="form-group">
+          <label for="userName">Your Name:</label>
+          <input type="text" id="userName" placeholder="Enter your display name" required>
+        </div>
+        <button type="submit" class="btn-primary">Start Chatting</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal for creating group -->
+  <div class="modal" id="createGroupModal">
+    <div class="modal-content">
+      <h2>Create a Group</h2>
+      <form id="createGroupForm">
+        <div class="form-group">
+          <label for="groupName">Group Name:</label>
+          <input type="text" id="groupName" placeholder="Enter group name" required>
+        </div>
+        <div class="form-group">
+          <label for="groupDescription">Description:</label>
+          <input type="text" id="groupDescription" placeholder="Enter group description">
+        </div>
+        <div class="form-group">
+          <label for="groupPassword">Password (optional):</label>
+          <input type="password" id="groupPassword" placeholder="Set a password to make it private">
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn-secondary" id="cancelGroupBtn">Cancel</button>
+          <button type="submit" class="btn-primary">Create Group</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal for joining group with password -->
+  <div class="modal" id="joinGroupModal">
+    <div class="modal-content">
+      <h2>Join Group</h2>
+      <form id="joinGroupForm">
+        <div class="form-group">
+          <label id="joinGroupNameLabel">Group Name:</label>
+        </div>
+        <div class="form-group" id="passwordGroupField" style="display: none;">
+          <label for="groupJoinPassword">Password:</label>
+          <input type="password" id="groupJoinPassword" placeholder="Enter group password">
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn-secondary" id="cancelJoinGroupBtn">Cancel</button>
+          <button type="submit" class="btn-primary">Join Group</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Group Members Modal -->
+  <div class="modal" id="groupMembersModal">
+    <div class="modal-content">
+      <h2>Group Members</h2>
+      <ul class="members-list" id="membersList">
+        <!-- Members will be added here -->
+      </ul>
+      <button type="button" class="btn-secondary" id="closeGroupMembersBtn">Close</button>
+    </div>
+  </div>
+
+  <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
