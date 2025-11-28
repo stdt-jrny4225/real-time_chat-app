@@ -1,5 +1,5 @@
 
-# 💬 Real-Time Chat Application with AI Integration
+# Chat Application with AI Integration
 
 **COMPANY :** CODTECH IT SOLUTION
 
@@ -86,20 +86,15 @@ Example format:
 
 🔐 Login Page
 
-(Insert Screenshot)
+<img width="958" height="503" alt="Image" src="https://github.com/user-attachments/assets/5dfb8407-bac6-4f70-8f85-f3fa40dc749b" />
 
 💬 Chat UI
 
-(Insert Screenshot)
+<img width="950" height="447" alt="Image" src="https://github.com/user-attachments/assets/c52bc714-4bac-4758-8321-df743e80ce67" />
 
 🤖 AI Chat
 
-(Insert Screenshot)
-
-
-
-
----
+<img width="954" height="503" alt="Image" src="https://github.com/user-attachments/assets/e6ebfed7-4d33-4aef-8611-938a713c8c68" />
 
 ## 🎯 Learning Outcomes
 
